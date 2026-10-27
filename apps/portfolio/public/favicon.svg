@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Envoid neural interface</title>
+  <rect width="64" height="64" rx="14" fill="#0b0914"/>
+  <path d="M32 6 55 19v26L32 58 9 45V19Z" fill="#191027" stroke="#b85cff" stroke-width="4" stroke-linejoin="round"/>
+  <path d="m55 32v13L32 58" fill="none" stroke="#00f0ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M23 20h20l-4 6H29v5h12l-4 6h-8v5h14l-4 6H23Z" fill="#d8b4fe"/>
+</svg>
