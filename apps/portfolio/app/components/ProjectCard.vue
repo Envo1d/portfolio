@@ -1,0 +1,8 @@
+<script setup lang="ts">
+import { ArrowUpRight, Play } from 'lucide-vue-next'
+import type { Project } from '~/data/projects'
+defineProps<{ project: Project }>()
+
+</script>
+<template><article class="project-card"><NuxtLink :to="{ path: '/lab', query: { project: project.id } }" :class="['project-visual', project.accent]" :aria-label="`Launch ${project.name} in Lab`"><div class="mini-title"><span>{{ project.id === 'signal' ? 'SIGNAL / ANALYTICS' : 'ORBIT / WORKSPACE' }}</span><span>•••</span></div><template v-if="project.id === 'signal'"><div class="mini-stats"><div>24,892<small>DEMO EVENTS</small></div><div>+18.6%<small>SAMPLE GROWTH</small></div></div><svg viewBox="0 0 440 85" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70 L25 58 L45 64 L70 40 L90 50 L115 34 L140 45 L165 22 L190 39 L215 27 L240 40 L260 15 L285 24 L310 7 L335 20 L360 4 L385 16 L415 0 L440 10" /></svg></template><div v-else class="mini-board"><div v-for="(label, index) in ['BACKLOG', 'IN PROGRESS', 'COMPLETE']" :key="label"><small>{{ label }}</small><i v-for="n in 3 - index" :key="n"><span :style="{ width: `${45 + n * 12}%` }" /><span /><b :class="{ pink: n === 2 }" /></i></div></div><span class="visual-launch"><Play :size="12" /> LAUNCH IN LAB</span></NuxtLink><div class="project-body"><div class="project-heading"><h3>{{ project.name }}</h3><span class="demo-tag">DEMO</span></div><p>{{ project.description }}</p><div class="project-bottom"><div class="tags"><span v-for="tag in project.tags" :key="tag">{{ tag }}</span></div><NuxtLink :to="{ path: '/lab', query: { project: project.id } }" class="project-launch" :aria-label="`Launch ${project.name} in Lab`">Launch in Lab <ArrowUpRight :size="16" /></NuxtLink></div></div></article></template>
+

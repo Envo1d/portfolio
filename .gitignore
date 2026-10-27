@@ -1,0 +1,7 @@
+node_modules/
+.nuxt/
+.output/
+dist/
+apps/portfolio/public/demos/
+*.log
+.env
