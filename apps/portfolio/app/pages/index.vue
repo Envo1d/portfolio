@@ -2,6 +2,7 @@
 import { ArrowRight, ArrowUpRight, Braces, Code2, FolderOpen, Mail, Server } from 'lucide-vue-next'
 import { profile } from '~/data/projects'
 import { featuredProjects, overview } from '~/data/overview'
+const baseURL = useRuntimeConfig().app.baseURL
 const directionIcons = { interfaces: Code2, systems: Server, desktop: Braces }
 useHead({ title: 'Envoid // Software Developer' })
 </script>
@@ -22,7 +23,7 @@ useHead({ title: 'Envoid // Software Developer' })
         <div class="hero-meta"><span><FolderOpen :size="14" /> EXPLORE THE WORK</span><span><Code2 :size="14" /> TRY THE DEMOS</span></div>
       </div>
       <div class="identity-visual">
-        <img src="/images/avatar.png" alt="Envoid cyberpunk character in a neon circle" width="1254" height="1254" fetchpriority="high" />
+        <img :src="`${baseURL}images/avatar.png`" alt="Envoid cyberpunk character in a neon circle" width="1254" height="1254" fetchpriority="high" />
         <span class="image-top">IDENTITY MODULE <span>● LIVE</span></span>
         <div class="crosshair top-left" /><div class="crosshair bottom-right" />
         <div class="portrait-caption"><span>DEVELOPER PROFILE</span><strong>{{ profile.name.toUpperCase() }}</strong><small>HUMAN INPUT. DIGITAL OUTPUT.</small></div>

@@ -17,7 +17,7 @@ The interface is in English. Included projects and analytics use demonstration d
 ## Requirements
 
 - Node.js **22.12.0 or newer**, as declared in the root `package.json`.
-- pnpm **12.15.0**, pinned by the root `packageManager` field.
+- npm (included with Node.js); CI uses Node.js 24.
 
 If you use Corepack, enable it with `corepack enable` and use the project's pinned package manager version.
 
@@ -26,19 +26,19 @@ If you use Corepack, enable it with `corepack enable` and use the project's pinn
 Run from the repository root:
 
 ```sh
-pnpm install --frozen-lockfile
-pnpm dev
+npm ci
+npm run dev
 ```
 
 Open the local URL printed by Nuxt, usually `http://127.0.0.1:3000`.
 
-`pnpm dev` first builds both demo applications and copies their output into the portfolio's public directory. The portfolio then runs with hot reload. Embedded demos are served from those built files; after changing a demo, run `pnpm demos:build` and reload its window, or restart `pnpm dev`.
+`npm run dev` first builds both demo applications and copies their output into the portfolio's public directory. The portfolio then runs with hot reload. Embedded demos are served from those built files; after changing a demo, run `npm run demos:build` and reload its window, or restart `npm run dev`.
 
 For hot reload while developing a demo independently:
 
 ```sh
-pnpm --filter @envo1d/react-demo dev
-pnpm --filter @envo1d/vue-demo dev
+npm run dev --workspace=@envo1d/react-demo
+npm run dev --workspace=@envo1d/vue-demo
 ```
 
 Run each command in its own terminal and open the printed URL with the corresponding `/demos/react-demo/` or `/demos/vue-demo/` base path.
@@ -47,12 +47,12 @@ Run each command in its own terminal and open the printed URL with the correspon
 
 | Command | Purpose |
 | --- | --- |
-| `pnpm dev` | Build and copy demos, then start the Nuxt development server. |
-| `pnpm demos:build` | Type-check and build both demos, then copy them into the portfolio. |
-| `pnpm typecheck` | Run TypeScript checks across all three applications. |
-| `pnpm build` | Build the demos and the production Nuxt/Nitro application. |
-| `pnpm preview` | Preview an existing portfolio production build locally. |
-| `pnpm generate` | Build the demos and generate the static portfolio. |
+| `npm run dev` | Build and copy demos, then start the Nuxt development server. |
+| `npm run demos:build` | Type-check and build both demos, then copy them into the portfolio. |
+| `npm run typecheck` | Run TypeScript checks across all three applications. |
+| `npm run build` | Build the demos and the production Nuxt/Nitro application. |
+| `npm run preview` | Preview an existing portfolio production build locally. |
+| `npm run generate` | Build the demos and generate the static portfolio. |
 
 ## Repository structure
 
@@ -76,7 +76,7 @@ scripts/
   copy-demos.mjs             # Copies Vite builds into portfolio/public/demos
 ```
 
-The portfolio uses Nuxt 4, Vue 3, Vue Router 5, Pinia 3, Tailwind CSS 4, and Lucide icons. The demos use Vite 6 with React 19 or Vue 3. Dependency ranges are declared in each application's `package.json`; resolved versions are recorded in `pnpm-lock.yaml`.
+The portfolio uses Nuxt 4, Vue 3, Vue Router 5, Pinia 3, Tailwind CSS 4, and Lucide icons. The demos use Vite 6 with React 19 or Vue 3. Dependency ranges are declared in each application's `package.json`; resolved versions are recorded in `package-lock.json`.
 
 ## Routes
 
@@ -148,7 +148,7 @@ The project is configured to run at the root of a domain. Demo asset paths are r
 ### Node.js server
 
 ```sh
-pnpm build
+npm run build
 node apps/portfolio/.output/server/index.mjs
 ```
 
@@ -157,7 +157,7 @@ Configure the server address and port using the `HOST` and `PORT` environment va
 ### Static hosting
 
 ```sh
-pnpm generate
+npm run generate
 ```
 
 Deploy the contents of `apps/portfolio/.output/public`. Configure the host to resolve generated route directories to their `index.html` files, including `/projects`, `/lab`, `/stack`, and `/contact`. The demo builds are included under `/demos/`.
@@ -165,8 +165,14 @@ Deploy the contents of `apps/portfolio/.output/public`. Configure the host to re
 ## Validation
 
 ```sh
-pnpm typecheck
-pnpm build
+npm run typecheck
+npm run build
 ```
 
-Use `pnpm preview` after building to check the production output. Check navigation, project search and filters, terminal commands, window controls, and both demos at desktop and mobile sizes. The repository currently has no automated test script.
+Use `npm run preview` after building to check the production output. Check navigation, project search and filters, terminal commands, window controls, and both demos at desktop and mobile sizes. The repository currently has no automated test script.
+
+## GitHub Pages
+
+Workflow `.github/workflows/deploy.yml` собирает сайт и оба демо при push в `main` или ручном запуске через Actions. В GitHub откройте Settings → Pages → Build and deployment и выберите Source: GitHub Actions. Затем отправьте workflow и изменения путей в `main`. Адрес опубликованного сайта появится в Settings → Pages и в результате deployment.
+
+Базовый путь определяется автоматически через `actions/configure-pages`: поддерживаются адрес репозитория `/portfolio/`, корень `username.github.io` и настроенный собственный домен. Публикуется только `apps/portfolio/.output/public` после `npm run generate`.
