@@ -1,0 +1,41 @@
+@font-face {
+  font-family: EvicHeading;
+  src: url('../public/fonts/font.woff2') format('woff2');
+  font-display: swap;
+}
+
+body { font-family: Inter, system-ui, sans-serif; }
+#root { height: 100%; padding-top: 36px; }
+.evic-heading { font-family: EvicHeading, system-ui, sans-serif; }
+.demo-banner { position: fixed; inset: 0 0 auto; z-index: 60; height: 36px; background: #17233d; color: #e4ecff; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 16px; font-size: 11px; }
+.demo-banner button { text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+#root > nav { top: 36px; }
+.fixed.top-14 { top: 92px; }
+.demo-workspace { padding: 88px 16px 32px; max-width: 1536px; margin: auto; display: flex; gap: 28px; }
+.demo-sidebar { width: 240px; flex-shrink: 0; }
+.demo-content { flex: 1; min-width: 0; }
+.demo-empty { min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 90px 20px 40px; text-align: center; }
+.demo-empty h1, .demo-panel h1 { font-size: 28px; font-weight: 600; }
+.demo-empty p, .demo-panel > p { color: #64748b; margin-bottom: 20px; }
+.demo-panel { width: 100%; }
+.demo-activity li { display: flex; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 1px solid #e2e8f0; }
+.demo-activity time { color: #64748b; font-size: 12px; }
+.demo-plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.demo-plans article { border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; }
+.demo-plans h2 { font-size: 22px; font-weight: 600; }
+.demo-plans p { margin: 12px 0 24px; color: #64748b; min-height: 48px; }
+[role=dialog] { max-height: 90dvh; overflow-y: auto; }
+
+@media (max-width: 767px) {
+  .demo-sidebar { display: none; }
+  .demo-banner-detail { display: none; }
+  .demo-workspace { padding-top: 76px; }
+  .demo-plans { grid-template-columns: 1fr; }
+  .demo-content section [data-panel] { min-width: 0; }
+  .demo-content section [data-panel] > div { padding-left: 12px; padding-right: 12px; }
+  .demo-content section h1 { font-size: 26px; }
+  .demo-content section p.text-xl { font-size: 14px; }
+  .demo-content section [role=tablist] { gap: 4px; }
+  .demo-content section [role=tab] { font-size: 14px; }
+  .demo-activity li { flex-direction: column; gap: 4px; }
+}

@@ -1,13 +1,13 @@
 # ENVO1D // Neural Interface
 
-A responsive developer portfolio with a cyberpunk, sci-fi desktop interface. Built with Nuxt 4, Vue 3, TypeScript, Tailwind CSS 4, and Pinia, with independent React and Vue applications you can launch inside the portfolio.
+A responsive developer portfolio with a cyberpunk, sci-fi desktop interface. Built with Nuxt 4, Vue 3, TypeScript, Tailwind CSS 4, and Pinia, with independent React applications you can launch inside the portfolio.
 
 The interface is in English. Included projects and analytics use demonstration data. Public GitHub and email contacts are currently unconfigured.
 
 ## Features
 
 - Personal overview with featured projects, development interests, and a current focus on AI Agent Orchestrator.
-- Project explorer with search and React/Vue filters.
+- Project explorer with search and framework filters.
 - Interactive lab with draggable windows, focus management, minimize/restore, maximize, reload, and links to open demos in a separate tab.
 - Desktop, tablet (768 px), and mobile (375 px) demo viewport presets, constrained by the available screen width.
 - A simulated terminal with project launch commands and command history.
@@ -38,16 +38,15 @@ For hot reload while developing a demo independently:
 
 ```sh
 npm run dev --workspace=@envo1d/react-demo
-npm run dev --workspace=@envo1d/vue-demo
+npm run dev --workspace=@envo1d/evic-demo
 ```
 
-Run each command in its own terminal and open the printed URL with the corresponding `/demos/react-demo/` or `/demos/vue-demo/` base path.
-
+Run each command in its own terminal and open its printed local URL.
 ## Commands
 
 | Command | Purpose |
 | --- | --- |
-| `npm run dev` | Build and copy demos, then start the Nuxt development server. |
+| `npm run dev` | Build and copy all demos, then start the Nuxt development server. |
 | `npm run demos:build` | Type-check and build both demos, then copy them into the portfolio. |
 | `npm run typecheck` | Run TypeScript checks across all three applications. |
 | `npm run build` | Build the demos and the production Nuxt/Nitro application. |
@@ -71,12 +70,12 @@ apps/
       images/                # Profile avatar
     nuxt.config.ts           # Nuxt, metadata, and prerender configuration
   react-demo/                # Signal dashboard (@envo1d/react-demo)
-  vue-demo/                  # Orbit taskboard (@envo1d/vue-demo)
+  evic-demo/                 # Evic workspace (@envo1d/evic-demo)
 scripts/
   copy-demos.mjs             # Copies Vite builds into portfolio/public/demos
 ```
 
-The portfolio uses Nuxt 4, Vue 3, Vue Router 5, Pinia 3, Tailwind CSS 4, and Lucide icons. The demos use Vite 6 with React 19 or Vue 3. Dependency ranges are declared in each application's `package.json`; resolved versions are recorded in `package-lock.json`.
+The portfolio uses Nuxt 4, Vue 3, Vue Router 5, Pinia 3, Tailwind CSS 4, and Lucide icons. The demos use Vite 6: Signal uses React 19 and Evic retains React 18 from the source client. Dependency ranges are declared in each application's `package.json`; resolved versions are recorded in `package-lock.json`.
 
 ## Routes
 
@@ -88,15 +87,15 @@ The portfolio uses Nuxt 4, Vue 3, Vue Router 5, Pinia 3, Tailwind CSS 4, and Luc
 | `/stack` | Technology stack. |
 | `/contact` | Public contacts and their configuration status. |
 | `/demos/react-demo/` | Standalone Signal dashboard. |
-| `/demos/vue-demo/` | Standalone Orbit taskboard. |
+| `/demos/evic-demo/` | Evic teams and kanban workspace with local mock data. |
 
 ### Demo applications
 
 **Signal dashboard** is a React analytics interface with 24H, 7D, and 30D datasets, selectable chart bars, summary metrics, and a simulated stream toggle. Data is deterministic; the stream control changes UI state without connecting to a live feed.
 
-**Orbit taskboard** is a Vue task board. Add or delete tasks and advance them through Backlog → In progress → Complete → Backlog, with completion progress displayed above the board.
+Both demos run in the browser without accounts or a backend. Signal data and portfolio window state reset on a full page refresh; Evic changes persist locally until reset.
 
-Both demos run in the browser without accounts or a backend. Demo data and window state are held in memory and reset on a full page refresh.
+**Evic workspace** preserves the client UI from `evic-app`: teams, roles, members, invitations, boards, lists, draggable cards, and profile settings. It opens without registration. All operations are mocked in the browser, covers are embedded locally, and changes persist in localStorage until **Reset demo**. Activity and Billing are simulated demo screens. See [the Evic demo README](apps/evic-demo/README.md) for scope and checks.
 
 ### Terminal
 
@@ -108,7 +107,7 @@ whoami
 skills
 projects
 open signal
-open orbit
+open evic
 github
 contact
 clear
@@ -137,7 +136,7 @@ Set `profile.github` and `profile.email` to your verified public contact details
 4. Register the project in `apps/portfolio/app/data/projects.ts`. Extend the framework type and explorer filters if you introduce another framework.
 5. Optionally add its project ID to `overview.featuredIds` in `apps/portfolio/app/data/overview.ts`.
 
-The existing demos are single-page applications without nested routes. For a demo with client-side routes, use hash routing or configure its base path and hosting fallback.
+Signal is a single-page application without nested routes; Evic uses hash routing. For a demo with client-side routes, use hash routing or configure its base path and hosting fallback.
 
 Demo windows use iframes with `sandbox="allow-scripts allow-same-origin allow-forms"`. They are intended for trusted local applications and separate the apps' CSS and JavaScript environments. For untrusted or third-party content, use a separate origin and review sandbox permissions and the provider's embedding policy. The portfolio does not exchange application data with the demos.
 
@@ -169,7 +168,7 @@ npm run typecheck
 npm run build
 ```
 
-Use `npm run preview` after building to check the production output. Check navigation, project search and filters, terminal commands, window controls, and both demos at desktop and mobile sizes. The repository currently has no automated test script.
+Use `npm run preview` after building to check the production output. Check navigation, project search and filters, terminal commands, window controls, and both demos at desktop and mobile sizes. Run `npm run test --workspace=@envo1d/evic-demo` for Evic mock workflow tests.
 
 ## GitHub Pages
 

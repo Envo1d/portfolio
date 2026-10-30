@@ -11,11 +11,11 @@ async function run() {
   history.push(raw); cursor = history.length; input.value = ''; lines.value.push(`envo1d@neural:~$ ${raw}`)
   const [command, argument] = raw.split(/\s+/)
   switch (command?.toLowerCase()) {
-    case 'help': lines.value.push('help · whoami · skills · projects · open <signal|orbit> · github · contact · clear'); break
+    case 'help': lines.value.push('help · whoami · skills · projects · open <signal|evic> · github · contact · clear'); break
     case 'whoami': lines.value.push('Envoid // Software Developer. Web and desktop applications. Interested in AI development, systems programming, and blockchain.'); break
     case 'skills': lines.value.push(stack.join(' / ')); break
     case 'projects': lines.value.push(...projects.map(p => `${p.id} — ${p.name} [${p.framework}, DEMO]`)); break
-    case 'open': { const project = projects.find(p => p.id === argument?.toLowerCase()); if (project) { await navigateTo({ path: '/lab', query: { project: project.id } }); desktop.open(project.id); lines.value.push(`Launched ${project.name}.`); desktop.terminalOpen = false } else lines.value.push('Usage: open signal | open orbit'); break }
+    case 'open': { const project = projects.find(p => p.id === argument?.toLowerCase()); if (project) { await navigateTo({ path: '/lab', query: { project: project.id } }); desktop.open(project.id); lines.value.push(`Launched ${project.name}.`); desktop.terminalOpen = false } else lines.value.push('Usage: open signal | open evic'); break }
     case 'github': lines.value.push(profile.github || 'GitHub is not configured. A verified profile URL has not been supplied.'); break
     case 'contact': lines.value.push(profile.email || 'Contact is not configured. No public email has been supplied.'); break
     case 'clear': lines.value = []; break

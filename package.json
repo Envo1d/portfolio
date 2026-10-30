@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "npm run demos:build && npm run dev --workspace=@envo1d/portfolio",
-    "demos:build": "npm run build --workspace=@envo1d/react-demo && npm run build --workspace=@envo1d/vue-demo && node scripts/copy-demos.mjs",
+    "demos:build": "npm run build --workspace=@envo1d/react-demo && npm run build --workspace=@envo1d/evic-demo && node scripts/copy-demos.mjs",
     "build": "npm run demos:build && npm run build --workspace=@envo1d/portfolio",
     "generate": "npm run demos:build && npm run generate --workspace=@envo1d/portfolio",
     "preview": "npm run preview --workspace=@envo1d/portfolio",
