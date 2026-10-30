@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "next/navigation": ["./demo/navigation.ts"],
+      "next/link": ["./demo/link.tsx"],
+      "next/image": ["./demo/image.tsx"]
+    },
+    "types": ["vite/client", "node"]
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}
