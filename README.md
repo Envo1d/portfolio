@@ -1,6 +1,6 @@
 # ENVO1D // Neural Interface
 
-A responsive developer portfolio with a cyberpunk, sci-fi desktop interface. Built with Nuxt 4, Vue 3, TypeScript, Tailwind CSS 4, and Pinia, with independent React applications you can launch inside the portfolio.
+A responsive developer portfolio with a cyberpunk, sci-fi desktop interface. Built with Nuxt 4, Vue 3, TypeScript, Tailwind CSS 4, and Pinia, with independent Vue and React applications you can launch inside the portfolio.
 
 The interface is in English. Included projects and analytics use demonstration data. Public GitHub and email contacts are currently unconfigured.
 
@@ -37,7 +37,7 @@ Open the local URL printed by Nuxt, usually `http://127.0.0.1:3000`.
 For hot reload while developing a demo independently:
 
 ```sh
-npm run dev --workspace=@envo1d/react-demo
+npm run dev --workspace=@envo1d/nexa-demo
 npm run dev --workspace=@envo1d/evic-demo
 ```
 
@@ -69,13 +69,13 @@ apps/
       demos/                 # Generated demo builds; ignored by Git
       images/                # Profile avatar
     nuxt.config.ts           # Nuxt, metadata, and prerender configuration
-  react-demo/                # Signal dashboard (@envo1d/react-demo)
+  nexa-demo/                 # Nexa media library (@envo1d/nexa-demo)
   evic-demo/                 # Evic workspace (@envo1d/evic-demo)
 scripts/
   copy-demos.mjs             # Copies Vite builds into portfolio/public/demos
 ```
 
-The portfolio uses Nuxt 4, Vue 3, Vue Router 5, Pinia 3, Tailwind CSS 4, and Lucide icons. The demos use Vite 6: Signal uses React 19 and Evic retains React 18 from the source client. Dependency ranges are declared in each application's `package.json`; resolved versions are recorded in `package-lock.json`.
+The portfolio uses Nuxt 4, Vue 3, Vue Router 5, Pinia 3, Tailwind CSS 4, and Lucide icons. Nexa uses Vue 3 and Vite 8; Evic uses React 18 and Vite 6 from the source client. Dependency ranges are declared in each application's `package.json`; resolved versions are recorded in `package-lock.json`.
 
 ## Routes
 
@@ -86,14 +86,14 @@ The portfolio uses Nuxt 4, Vue 3, Vue Router 5, Pinia 3, Tailwind CSS 4, and Luc
 | `/lab` | Demo launcher and interactive application windows. |
 | `/stack` | Technology stack. |
 | `/contact` | Public contacts and their configuration status. |
-| `/demos/react-demo/` | Standalone Signal dashboard. |
+| `/demos/nexa-demo/` | Nexa media library in browser demo mode. |
 | `/demos/evic-demo/` | Evic teams and kanban workspace with local mock data. |
 
 ### Demo applications
 
-**Signal dashboard** is a React analytics interface with 24H, 7D, and 30D datasets, selectable chart bars, summary metrics, and a simulated stream toggle. Data is deterministic; the stream control changes UI state without connecting to a live feed.
+**Nexa** copies the frontend from the Nexa desktop project, including its existing browser demo mode: sample media, library and Stage views, tags, filters, and collections. Rust sources, native executables, and the Tauri build toolchain are excluded. The Tauri JavaScript libraries remain because the original client imports them and guards native operations.
 
-Both demos run in the browser without accounts or a backend. Signal data and portfolio window state reset on a full page refresh; Evic changes persist locally until reset.
+Both demos run in the browser without accounts or a backend. Nexa demo data and portfolio window state reset on a full page refresh; Evic changes persist locally until reset.
 
 **Evic workspace** preserves the client UI from `evic-app`: teams, roles, members, invitations, boards, lists, draggable cards, and profile settings. It opens without registration. All operations are mocked in the browser, covers are embedded locally, and changes persist in localStorage until **Reset demo**. Activity and Billing are simulated demo screens. See [the Evic demo README](apps/evic-demo/README.md) for scope and checks.
 
@@ -106,7 +106,7 @@ help
 whoami
 skills
 projects
-open signal
+open nexa
 open evic
 github
 contact
@@ -136,7 +136,7 @@ Set `profile.github` and `profile.email` to your verified public contact details
 4. Register the project in `apps/portfolio/app/data/projects.ts`. Extend the framework type and explorer filters if you introduce another framework.
 5. Optionally add its project ID to `overview.featuredIds` in `apps/portfolio/app/data/overview.ts`.
 
-Signal is a single-page application without nested routes; Evic uses hash routing. For a demo with client-side routes, use hash routing or configure its base path and hosting fallback.
+Nexa is a single-page application without nested routes; Evic uses hash routing. For a demo with client-side routes, use hash routing or configure its base path and hosting fallback.
 
 Demo windows use iframes with `sandbox="allow-scripts allow-same-origin allow-forms"`. They are intended for trusted local applications and separate the apps' CSS and JavaScript environments. For untrusted or third-party content, use a separate origin and review sandbox permissions and the provider's embedding policy. The portfolio does not exchange application data with the demos.
 

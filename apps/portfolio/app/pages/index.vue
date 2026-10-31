@@ -34,7 +34,6 @@ useHead({ title: 'Envoid // Software Developer' })
     <section class="overview-section" aria-labelledby="featured-title">
       <div class="section-heading"><div><span class="eyebrow">01 / SELECTED WORK</span><h2 id="featured-title">A few things to explore<span>.</span></h2></div><NuxtLink to="/projects">All projects <ArrowRight :size="16" /></NuxtLink></div>
       <div class="projects-grid"><ProjectCard v-for="project in featuredProjects" :key="project.id" :project="project" /></div>
-      <p class="data-note">// Interactive sample projects built for this portfolio. Metrics and tasks use demo data.</p>
     </section>
 
     <section class="overview-section" aria-labelledby="directions-title">

@@ -6,7 +6,7 @@ export const overview = {
   headline: 'Web & desktop applications.',
   introduction: 'I develop web and desktop applications. My current interests are AI development, systems programming, and blockchain.',
 
-  featuredIds: ['evic', 'signal'],
+  featuredIds: ['nexa', 'evic'],
   technologies: ['TypeScript', 'Vue', 'React', 'Node.js', 'Rust', 'Tauri'],
   directions: [
     { id: 'interfaces', title: 'Full-stack web', description: 'Developing web applications, from interactive interfaces to server-side logic and data.', technologies: 'Vue / React / TypeScript' },
