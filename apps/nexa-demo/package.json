@@ -1,0 +1,38 @@
+{
+  "name": "@envo1d/nexa-demo",
+  "private": true,
+  "version": "2.13.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vue-tsc --noEmit && vite build",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint src vite.config.ts eslint.config.js --max-warnings 0",
+    "format:check": "prettier --check \"src/**/*.{vue,ts,js,json,css,scss,less}\" index.html vite.config.ts eslint.config.js package.json .prettierrc.json tsconfig.json tsconfig.node.json",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@lucide/vue": "^1.52.0",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-clipboard-manager": "^2.4.1",
+    "@tauri-apps/plugin-dialog": "^2.8.1",
+    "@tauri-apps/plugin-notification": "^2.5.1",
+    "@tauri-apps/plugin-opener": "^2",
+    "@tauri-apps/plugin-os": "^2.4.0",
+    "vue": "^3.5.13",
+    "vue-i18n": "^11.4.14"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.11.1",
+    "globals": "^17.13.0",
+    "prettier": "3.9.9",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "vite": "^8.0.16",
+    "vue-tsc": "^3.3.5"
+  }
+}
